@@ -1,0 +1,20 @@
+    ;source     'main.c'
+    .align      2
+    .global     GetSomeValue
+
+; Function GetSomeValue
+GetSomeValue:    .type    func
+    ld.w        d2,_999001_someValue
+    add         d15,d2,#1
+    st.w        _999001_someValue,d15
+    ret
+
+    .align      2
+    .global     main
+; Function main
+main:    .type    func
+    sub.a       a10,#8
+.L3:
+    call        GetSomeValue
+    st.w        [a10],d2
+    j           .L3
